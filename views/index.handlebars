@@ -1,0 +1,49 @@
+{{!-- <main> --}}
+  <div class="container">
+    <div class="jumbotron" style="background-color: rgb(9, 110, 243); color: white">
+      <h1 class="text-center">
+        Eat Da Burger!!
+      </h1>
+      <h3 class="text-center">Keep Track of the burgers you are eating</h3>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <strong>Your Burgers</strong>
+            </h3>
+          </div>
+          <div class="panel-body">
+        {{#each burgers}} {{#unless this.devoured}}
+        <div>
+          <form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
+            <button type="submit" class='burgerAvailable btn btn-danger'>{{this.burger_name}}  (Click to Remove)</button>
+          </form>
+        </div>
+        {{/unless}} {{/each}}
+          </div>
+        </div>
+      </div>
+
+
+
+
+ <div class="col-md-6 add">
+   <h2>Add A Burger Option</h2>
+    <form action="/api/burgers" method="POST">
+      <input type="text" id="name" name="burger_name">
+      <button type="submit" class="addBurgerButton btn btn-success">Add The Burger</button>
+    </form>
+  </div>
+
+
+<style>
+.add {
+    text-align:center;
+}
+
+
+</style>
